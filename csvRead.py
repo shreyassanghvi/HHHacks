@@ -1,12 +1,8 @@
-import csv
-import urllib.request
-
-url = "https://raw.github.com/datasets/gdp/master/data/gdp.csv"
-webpage = urllib.request.urlopen(url)
-datareader = csv.reader(webpage.read().decode('utf-8').splitlines())
-data = []
-for row in datareader:
-    data.append(row)
-
-for row in data:
-    print(row[2],row[3])
+import pandas as pd
+import matplotlib.pyplot as plt
+url = "https://data.cityofnewyork.us/api/views/kku6-nxdu/rows.csv"
+data=pd.read_csv(url)
+total_rows = data['JURISDICTION NAME'].count
+data.plot.scatter(x='PERCENT PUBLIC ASSISTANCE TOTAL',y='JURISDICTION NAME')
+plt.show()
+#print(data)
